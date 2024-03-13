@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from . import models
+from django.contrib.auth.decorators import login_required
 
+
+@login_required(login_url="login_url")
 def index(request):
     context = {
         'user': request.user,
@@ -9,6 +12,7 @@ def index(request):
     return render(request,context)
 
 
+@login_required(login_url="login_url")
 def contact(request):
     if request.method == 'POST' :
         first_name = request.POST['first_name']
