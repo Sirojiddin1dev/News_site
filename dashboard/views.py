@@ -20,12 +20,12 @@ def contact(request):
         last_name = request.POST['last_name']
         email = request.POST['email']
         phone_number = request.POST['phone_number']
-        bio = request.POST['bio']
+        message = request.POST['message']
         created = models.Contact.objects.create(
             first_name = first_name,
             last_name = last_name,
             email = email,
             phone_number = phone_number,
-            bio = bio,
+            message = message,
         )
-    return redirect('index_url')
+    return render(request, 'contact.html', context)
