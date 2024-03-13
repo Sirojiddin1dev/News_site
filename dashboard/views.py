@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework.permissions import IsAuthenticated
 from . import models
 from django.contrib.auth.decorators import login_required
@@ -10,7 +10,7 @@ def index(request):
         'user': request.user,
         'comments': models.Comment.objects.all()
     }
-    return render(request,context)
+    return render(request,'index.html',context)
 
 
 @permission_classes([IsAuthenticated])
@@ -28,3 +28,4 @@ def contact(request):
             phone_number = phone_number,
             bio = bio,
         )
+    return redirect('index_url')
