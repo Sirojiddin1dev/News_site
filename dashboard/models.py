@@ -1,4 +1,5 @@
 from django.db import models
+from account.models import User
 from django.core.validators import RegexValidator
 
 
@@ -23,4 +24,9 @@ class Contact(models.Model):
             code='Invalid number'
         )
     ])
-    bio = models.CharField(max_length=255, null=True, blank=True)
+    message = models.CharField(max_length=255, null=True, blank=True)
+    CONTACT_CHOICES = (
+        ('Jovob berildi', 'Jovob berildi'),
+        ('Jovob berilmadi', 'Jovob berilmadi'),
+    )
+    status = models.CharField(max_length=200, choices= CONTACT_CHOICES)
