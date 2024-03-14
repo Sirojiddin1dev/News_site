@@ -9,7 +9,7 @@ class Advertising(models.Model):
         ('drop','drop'),
 
     )
-    status = models.CharField(max_lenght=200, choices=STATUS_CHOICES,default=public)
+    status = models.CharField(max_lenght=201, choices=STATUS_CHOICES,default=public)
 
 
 
