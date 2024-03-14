@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import permission_classes
 from . import models
 from django.contrib.auth.decorators import login_required
 
