@@ -5,8 +5,8 @@ class Advertising(models.Model):
     end_time = models.DateTimeField()
     link = models.CharField(max_length=200)
     STATUS_CHOICES = (
-        ('public','public'),
-        ('drop','drop'),
+        ('public', 'public'),
+        ('drop', 'drop'),
 
     )
     status = models.CharField(max_length=201, choices=STATUS_CHOICES,default='public')
