@@ -51,10 +51,7 @@ def edit_ad_view(request, pk):
         if img is not None:
             ad.img = img
         ad.save()
-        context = {
-            'ad': ad
-        }
-        return render(request, 'index.html', context)
+        return redirect("index_url")
     context = {
         'ad': ad
     }
