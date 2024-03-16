@@ -9,20 +9,16 @@ def create_ad_view(request):
         img = request.FILES.get('img')
         price = request.POST['price']
         address = request.POST['address']
-        date = request.POST['date']
         description = request.POST['description']
         category = request.POST['category']
-        view = request.POST['view']
         Ad.objects.create(
-            user_id=user,
+            user_id=request.user,
             name=name,
             img=img,
             price=price,
             address=address,
-            date=date,
             description=description,
             category=category,
-            view=view,
         )
         return redirect('index_url')
 
