@@ -1,5 +1,5 @@
 from django.db import models
-from accunt.models import User
+from account.models import User
 from django.template.defaultfilters import slugify
 
 
