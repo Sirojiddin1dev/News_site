@@ -18,7 +18,7 @@ class Category(models.Model):
 
 
 class Ad(models.Model):
-    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=55)
     img = models.ImageField(upload_to='ad_img/')
     price = models.DecimalField(decimal_places=2, max_digits=12)
