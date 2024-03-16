@@ -39,7 +39,15 @@ def edit_ad_view(request, pk):
         description = request.POST.get('description')
         category = request.POST.get('category')
         view = request.POST.get('view')
-        ad.username = ad
+        ad.user = user
+        ad.name = name
+        ad.img = img
+        ad.price = price
+        ad.address = address
+        ad.date = date
+        ad.description = description
+        ad.category = category
+        ad.view = view
         if img is not None:
             ad.img = img
         ad.save()
