@@ -4,7 +4,6 @@ from .models import Ad
 
 def create_ad_view(request):
     if request.method == 'POST':
-        user = request.POST['user']
         name = request.POST['name']
         img = request.FILES.get('img')
         price = request.POST['price']
@@ -12,7 +11,7 @@ def create_ad_view(request):
         description = request.POST['description']
         category = request.POST['category']
         Ad.objects.create(
-            user_id=request.user,
+            user=request.user,
             name=name,
             img=img,
             price=price,
@@ -21,6 +20,8 @@ def create_ad_view(request):
             category=category,
         )
         return redirect('index_url')
+
+    return render(request, 'add-poster.html')
 
 
 def edit_ad_view(request, pk):

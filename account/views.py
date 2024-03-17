@@ -1,17 +1,25 @@
 from django.shortcuts import render, redirect
-from account.models import User
+from .models import User
 from django.contrib.auth import login, logout, authenticate
-from django.http import HttpResponse
+from dashboard.models import Ad
 
 
 def create_user_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
+        email = request.POST.get('email')
         phone_number = request.POST.get('phone_number')
-        User.objects.create_user(username=username, password=password, phone_number=phone_number)
-        return redirect('index_url')
-    return render(request, 'index.html')
+        img = request.FILES.get('img')
+        User.objects.create_user(
+            username=username,
+            password=password,
+            phone_number=phone_number,
+            email=email,
+            img=img
+        )
+        return redirect('login_url')
+    return render(request, 'reg.html')
 
 
 def login_view(request):
@@ -25,28 +33,16 @@ def login_view(request):
     return render(request, 'login.html')
 
 
-def user_detail_view(request):
+def my_profile_view(request):
+    user = request.user
+    count = Ad.objects.filter(user=user).order_by('id').count
+    ad = Ad.objects.filter(user=user).order_by('-id')[:8]
     context = {
-        'user': request.user
+        'user': request.user,
+        'count': count,
+        'ad': ad,
     }
-    return render(request, 'user-detail.html', context)
-
-
-def update_user_view(request, pk):
-    user = User.objects.get(pk=pk)
-    if request.method == 'POST':
-        img = request.FILES.get('img')
-        username = request.POST.get('username')
-        bio = request.POST.get('bio')
-        phone_number = request.POST.get('phone_number')
-        user.username = username
-        user.bio = bio
-        user.phone_number = phone_number
-        user.img = img
-        user.save()
-        return HttpResponse("Home object created successfully!")
-
-    return redirect('#')
+    return render(request, 'profile.html', context)
 
 
 def logout_view(request):

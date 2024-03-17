@@ -5,14 +5,15 @@
           <div class="row">
             <div class="col-lg-8 offset-lg-2">
               <div class="card p-4 mb-5">
-                <form>
+                <form class="form" action="{% url 'login_url' %}" method="post">
+                  {% csrf_token %}
                   <div class="mb-3">
-                    <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="email">
+                    <label for="username" class="form-label">username</label>
+                    <input type="text" class="form-control" name="username" id="username">
                   </div>
                   <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password">
+                    <input type="password" class="form-control" name="password" id="password">
                   </div>
                   <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary">Kirish</button>

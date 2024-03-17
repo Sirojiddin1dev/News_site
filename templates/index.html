@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
         <!-- Header-->
         <header class="py-5">
@@ -6,7 +7,7 @@
         <div class="container px-4 px-lg-5">
             <!-- Heading Row-->
             <div class="row gx-4 gx-lg-5 align-items-center my-5">
-                <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="./assets/banner.jpg" alt="Banner" /></div>
+                <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'assets/banner.jpg' %}" alt="Banner" /></div>
                 <div class="col-lg-5">
                     <h1 class="font-weight-light">O'z e'loningizni joylashtiring</h1>
                     <p>Bu sayt orqali siz o'z e'lonlaringizni bepulga joylashtirib borishingiz
@@ -20,18 +21,18 @@
                 <div class="card-body"><p class="text-white m-0">Ushbu qidiruv bo'limi orqali siz o'zingiz qidirayotgan biror e'lonni qidirib topishingiz mumkin bo'ladi</p></div>
             </div>
 
-            <div class="card  my-5 py-4 text-center">
+            <div class="card my-5 py-4 text-center">
                 <div class="card-body">
-                    <form class="row g-3">
+                    <form class="row g-3" action="{% url 'search' %}" method="GET">
                         <label for="search" class="visually-hidden">Qidiruv</label>
-                        <input type="text" class="form-control form-control-lg" id="search" placeholder="E'lonlar qidiruvi...">
-                      </div>
-                      <div class="col-auto">
-                        <button type="submit" class="btn btn-primary btn-lg mb-3">Izlash</button>
-                      </div>
+                        <input type="text" class="form-control form-control-lg" id="search" name="query" placeholder="E'lonlar qidiruvi...">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary btn-lg mb-3">Izlash</button>
+                        </div>
                     </form>
                 </div>
             </div>
+        </div>
         </header>
         <!-- Page Content-->
         <section class="pt-4">
@@ -40,7 +41,7 @@
                 <div class="row gx-lg-5">
                     
                         <div class="col-lg-6 col-xxl-4 mb-5">
-                            <a href="#" class="category-poster">
+                            <a href="{% url 'mulk' %}" class="category-poster">
                             <div class="card bg-light border-0 h-100">
                                 <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
                                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-house-door-fill"></i></div>
@@ -51,7 +52,7 @@
                             </a>
                         </div>
                     <div class="col-lg-6 col-xxl-4 mb-5">
-                        <a href="#" class="category-poster">
+                        <a href="{% url 'transport' %}" class="category-poster">
                             <div class="card bg-light border-0 h-100">
                                 <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
                                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-truck"></i></div>
@@ -62,7 +63,7 @@
                         </a>
                     </div>
                     <div class="col-lg-6 col-xxl-4 mb-5">
-                        <a href="#" class="category-poster">
+                        <a href="{% url 'texnika' %}" class="category-poster">
                             <div class="card bg-light border-0 h-100">
                                 <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
                                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-phone-fill"></i></div>
@@ -73,7 +74,7 @@
                         </a>
                     </div>
                     <div class="col-lg-6 col-xxl-4 mb-5">
-                        <a href="#" class="category-poster">
+                        <a href="{% url 'ish' %}" class="category-poster">
                             <div class="card bg-light border-0 h-100">
                                 <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
                                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-person-lines-fill"></i></div>
@@ -102,7 +103,7 @@
                                 <a href="{% url 'single_ad_url' i.id %}"><img src="{{ i.img.url }}" class="card-img-top img-poster" alt=""></a>
                                 <div class="card-body">
                                 <div class="poster-title-cont">
-                                    <a href="{% url 'single_ad_url' i.id %}" class="poster-link"><span class="card-title poster-title poster-link">{{ i.title }}</span></a>
+                                    <a href="{% url 'single_ad_url' i.id %}" class="poster-link"><span class="card-title poster-title poster-link">{{ i.name }}</span></a>
                                 </div>
                                 <p class="card-text" style="margin: 0">{{ i.address }}</p>
                                 <p class="card-text">{{ i.date }}</p>
@@ -112,7 +113,7 @@
                         </div>
                         {% endfor %}
                         <div class="col-auto m-auto mt-3 mb-5">
-                            <button type="submit" class="btn btn-outline-secondary btn-lg mb-3">Barcha e'lonlar...</button>
+                            <a href="{% url 'ad_filter_url' %}" type="button" class="btn mt-3 btn-success">Barcha elonlar...</a>
                         </div>
                     </div>
                 </div>

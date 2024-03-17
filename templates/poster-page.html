@@ -43,18 +43,18 @@
                     <h4 class="mb-5">Foydalanuvchi</h4>
                     <div class="d-flex justify-content-between">
                       <img 
-                        src="./assets/noAvatar.png" 
+                        src="{{ user.img.url }}"
                         class="rounded-circle img-fluid" 
                         alt="Cinque Terre"
                         style="width: 100px; height: 100px">
                       <div class="d-flex flex-column">
-                        <a href="#"><h5>Eshmatov Toshmat</h5></a>
-                        <p>Saytda: 01.01.2021 dan beri</p>
-                        <p>E'lonlar soni: 20 ta</p>
+                        <a href="{% url 'user_detail_url' user.id %}"><h5>{{ user.username }}</h5></a>
+                        <p>Saytda: {{ user.date_joined }}</p>
+                        <p>E'lonlar soni: {{ count }} ta</p>
                       </div>
                     </div>
-                    <a href="#" type="button" class="btn btn-outline-secondary">+998911234567</a>
-                    <a href="#" type="button" class="btn mt-3 btn-success">Muallifning boshqa e'lonlari</a>
+                    <a href="#" type="button" class="btn btn-outline-secondary">{{ user.phone_number }}</a>
+                    <a href="{% url 'user_detail_url' user.id %}" type="button" class="btn mt-3 btn-success">Muallifning boshqa e'lonlari</a>
                   </div>
                 </div>
               </div>

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br><br><br><br>
+{% if query %}
+    <h2>Search Results for "{{ query }}"</h2>
+    <ul>
+    {% for i in results %}
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-3">
+                    <a href="{% url 'single_ad_url' i.id %}" class="poster-link"><img src="{{ i.img.url }}" class="img-fluid rounded-start img-board" alt="..."></a>
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body flex-poster-body">
+                        <div class="flex-poster-title">
+                            <div class="title-item-one"><a href="{% url 'single_ad_url' i.id %}" class="poster-link"><span class="card-title poster-title poster-link poster-flexible">{{ i.name }}</span>
+                            </a></div>
+                            <h5 class="title-item-two">{{ i.price }} SO'M</h5>
+                        </div>
+                        <div><p class="card-text"><small class="text-muted">{{ i.address }} - {{ i.date }}</small></p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No search query provided.</p>
+{% endif %}
+
+{% endblock %}
